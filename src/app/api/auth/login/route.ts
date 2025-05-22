@@ -1,7 +1,6 @@
-// src/app/api/auth/login/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { comparePasswords, generateToken } from '@/utils/auth';
-import prisma from '@/lib/prisma'; // Gunakan Prisma Client yang diimpor
+import prisma from '@/lib/prisma'; 
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,7 +16,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Cari user dengan error handling yang lebih baik
+    // Cari user
     let user;
     try {
       user = await prisma.user.findUnique({
@@ -54,7 +53,7 @@ export async function POST(req: NextRequest) {
     const token = generateToken({ id: user.id, email: user.email });
     console.log("Login successful, token generated");
 
-    // Buat response dengan cookie
+    // Response dengan cookie
     const response = NextResponse.json({
       message: 'Login berhasil',
       token,

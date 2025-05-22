@@ -1,4 +1,3 @@
-// src/app/api/todos/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserFromToken } from '@/utils/auth';
 import prisma from '@/lib/prisma';
@@ -39,7 +38,7 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // Cek apakah todo ada dan milik user
+    // Cek todo
     const existingTodo = await prisma.todo.findFirst({
       where: {
         id: todoId,

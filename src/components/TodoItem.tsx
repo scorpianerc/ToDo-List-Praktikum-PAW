@@ -1,4 +1,3 @@
-// src/components/TodoItem.tsx
 'use client';
 
 import { useState } from 'react';

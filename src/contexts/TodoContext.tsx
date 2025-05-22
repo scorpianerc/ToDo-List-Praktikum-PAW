@@ -1,4 +1,3 @@
-// src/contexts/TodoContext.tsx
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
@@ -121,17 +120,17 @@ export function TodoProvider({ children }: { children: ReactNode }) {
         throw new Error(responseData.error || 'Gagal memperbarui todo');
       }
       
-      // Update state dengan cara yang memicu re-render
+      // Update state
       setTodos(prevTodos => 
         prevTodos.map(todo => todo.id === id ? responseData.todo : todo)
       );
       
-      // Refresh data untuk memastikan konsistensi
+      // Refresh data
       await fetchTodos();
     } catch (error) {
       console.error("Error updating todo:", error);
       setError(error instanceof Error ? error.message : 'Terjadi kesalahan saat memperbarui todo');
-      throw error; // Re-throw error untuk ditangani oleh komponen
+      throw error;
     } finally {
       setLoading(false);
     }

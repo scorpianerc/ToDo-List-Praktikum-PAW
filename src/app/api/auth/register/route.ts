@@ -1,7 +1,6 @@
-// src/app/api/auth/register/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { hashPassword, generateToken } from '@/utils/auth';
-import prisma from '@/lib/prisma'; // Gunakan Prisma Client yang diimpor
+import prisma from '@/lib/prisma'; 
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,7 +14,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Cek apakah email sudah digunakan
+    // Cek email 
     const existingUser = await prisma.user.findUnique({
       where: { email }
     });
@@ -42,7 +41,7 @@ export async function POST(req: NextRequest) {
     // Generate JWT token
     const token = generateToken({ id: user.id, email: user.email });
 
-    // Buat response dengan cookie
+    // Response dengan cookie
     const response = NextResponse.json({
       message: 'Registrasi berhasil',
       token,

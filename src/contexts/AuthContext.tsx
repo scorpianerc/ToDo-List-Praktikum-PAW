@@ -28,9 +28,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // Fungsi untuk memeriksa autentikasi saat aplikasi dimuat
+  // Memeriksa autentikasi saat aplikasi dimuat
   useEffect(() => {
-    // Fungsi untuk mengambil token dan user dari localStorage
+    // Mengambil token dan user dari localStorage
     const checkAuth = () => {
       try {
         const storedToken = localStorage.getItem('token');
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuth();
   }, []);
 
-  // Fungsi login yang lebih robust
+  // Login
   const login = async (email: string, password: string) => {
     setLoading(true);
     setError(null);
@@ -85,7 +85,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       
-      // Simpan juga di cookie untuk middleware
       document.cookie = `token=${data.token}; path=/; max-age=604800`; // 7 days
       
       console.log("Login successful, redirecting to dashboard");

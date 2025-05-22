@@ -1,4 +1,3 @@
-// src/utils/auth.ts
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { User } from '@prisma/client';

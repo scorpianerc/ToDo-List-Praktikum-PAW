@@ -12,9 +12,7 @@ export default function Dashboard() {
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Gunakan useEffect dengan kondisi yang lebih baik
   useEffect(() => {
-    // Hanya fetch data saat komponen pertama kali dimount
     if (isInitialLoad) {
       fetchTodos().catch(err => {
         console.error("Error fetching todos:", err);
@@ -23,7 +21,7 @@ export default function Dashboard() {
     }
   }, [fetchTodos, isInitialLoad]);
 
-  // Fungsi refresh manual yang aman
+  // Refresh manual
   const handleRefresh = useCallback(() => {
     fetchTodos().catch(err => {
       console.error("Error refreshing todos:", err);
@@ -66,7 +64,7 @@ export default function Dashboard() {
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-semibold text-gray-800">Daftar Tugas</h2>
               <div className="flex space-x-2">
-                {/* Tombol refresh manual */}
+                {}
                 <button
                   onClick={handleRefresh}
                   disabled={loading}

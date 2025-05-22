@@ -1,9 +1,8 @@
-// src/app/api/todos/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserFromToken } from '@/utils/auth';
 import prisma from '@/lib/prisma';
 
-// Get all todos for the authenticated user
+// Dapatkan todo untuk user (login)
 export async function GET(req: NextRequest) {
   try {
     const token = req.headers.get('Authorization')?.split(' ')[1];
@@ -39,7 +38,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// Create a new todo
+// Buat todo baru
 export async function POST(req: NextRequest) {
   try {
     const token = req.headers.get('Authorization')?.split(' ')[1];
